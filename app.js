@@ -1,3 +1,4 @@
+const dotenv = require('dotenv');
 const express = require('express');
 
 // new instance from the express-session module, which will store our sessions.
@@ -5,6 +6,8 @@ const session = require('express-session');
 const path = require('path');
 const passport = require('passport');
 
+
+dotenv.config({ path: '.env' });
 const routes = require('./routes');
 
 const app = express();

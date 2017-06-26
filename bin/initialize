@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# requires 'sequelize-cli' module
+# chmod +x ./bin/initialize
+
+psql $DATABASE_INITIALIZATION_URI -v ON_ERROR_STOP=0 -t <<-EOSQL
+  CREATE USER cookies;
+  ALTER USER cookies WITH SUPERUSER;
+EOSQL
+
+psql $DATABASE_INITIALIZATION_URI -tc "SELECT 1 FROM pg_database WHERE datname = 'votingapp'" | grep -q 1 || psql $DATABASE_INITIALIZATION_URI -c "CREATE DATABASE votingapp"
