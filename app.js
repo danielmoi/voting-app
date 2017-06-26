@@ -1,5 +1,9 @@
 const express = require('express');
+
+// new instance from the express-session module, which will store our sessions.
+const session = require('express-session');
 const path = require('path');
+const passport = require('passport');
 
 const routes = require('./routes');
 
@@ -24,6 +28,11 @@ app.use((err, req, res, next) => {
   res.json(err).status(400);
   next();
 });
+
+app.use(passport.initialize());
+
+//  be sure to use express.session() before passport.session() to ensure that the login session is restored in the correct order.
+app.use(passport.session());
 
 app.listen(port, () => {
   console.log(`🌳  🌳  🌳  Now listening on ${port} 🌳  🌳  🌳`);
