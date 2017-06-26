@@ -1,7 +1,7 @@
 {
   "name": "fcc-voting-app",
   "version": "0.0.1",
-  "description": "[freeCodeCamp Backend challenge 5/5](https://www.freecodecamp.com/challenges/file-metadata-microservice)",
+  "description": "[freeCodeCamp Backend Project 1/5](https://www.freecodecamp.com/challenges/build-a-voting-app)",
   "main": "app.js",
   "engines": {
     "node": "7.6"
@@ -11,7 +11,7 @@
     "start": "node app.js",
     "start:dev": "node app.js PORT=5001",
     "go": "watchexec -e js -r yarn start",
-    "db:migrate": "./node_modules/.bin/sequelize --config config/db.js db:migrate",
+    "db:migrate": "./node_modules/.bin/sequelize --config config/db.json db:migrate",
     "db:setup": "./bin/initialize && yarn run db:migrate"
   },
   "keywords": [],

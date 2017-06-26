@@ -5,9 +5,10 @@ const express = require('express');
 const session = require('express-session');
 const path = require('path');
 const passport = require('passport');
-const bodyParser = require('body-parser');
+const { Strategy } = require('passport-local');
+const bodyParser = require('body-parser'); // get data from forms
+const { User } = require('./models');
 
-console.log('1');
 dotenv.config({ path: '.env' });
 
 const routes = require('./routes');
@@ -25,7 +26,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 // implement req.body
 app.use(bodyParser.urlencoded({
-  extended: false,
+  extended: true,
   limit: '5mb',
 }));
 app.use(bodyParser.json());
@@ -34,6 +35,16 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // routes
+
+// passport
+passport.use(new Strategy({
+  usernameField: 'email',
+  passwordField: 'password',
+  // session: false
+}, (username, password, done) => {
+  console.log('OH YEAHH!!!!!!!!!!!!');
+}));
+
 app.use('/', routes);
 
 
@@ -46,8 +57,6 @@ app.use((err, req, res, next) => {
   next();
 });
 
-
-// passport
 app.use(passport.initialize());
 
 //  be sure to use express.session() before passport.session() to ensure that the login session is restored in the correct order.
