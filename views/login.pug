@@ -10,9 +10,13 @@ html(lang="en")
   body
 
     .wrapper
-      h1 File Metadata Microservice
+      h1 Voting App
 
-      form.form(action="/upload" method="POST" enctype='multipart/form-data')
-        input.input(type="file" name="magic")
+      form.form(action="/login" method="POST")
+        label.label(for="email") Email
+        input.input(type="text" name="email" id="email")
+
+        label.label(for="password") Password
+        input.input(type="password" name="password" id="password")
 
         input.button(type="submit" value="Submit")

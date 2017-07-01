@@ -18,13 +18,11 @@ module.exports = (passport) => {
 
   router.get('/users', usersController.search);
 
+  router.get('/login', authController.form);
+
   router.post('/login',
     passport.authenticate('local-signup', { failureRedirect: '/login' }),
-    (req, res) => {
-      res.json({
-        you: 'are authenticated!!!!!!!!',
-      });
-    });
+    authController.login);
 
   return router;
 };
