@@ -14,10 +14,10 @@ if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable]);
 } else {
   sequelize = new Sequelize(
-    process.env.DATABASE_NAME,
-    process.env.DATABASE_USER,
-    process.env.DATABASE_PASS, {
-      host: process.env.DATABASE_HOST,
+    config.database,
+    config.username,
+    config.password, {
+      host: config.host,
       dialect: 'postgres',
       port: process.env.DATABASE_PORT,
     });
